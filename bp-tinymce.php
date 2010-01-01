@@ -13,8 +13,9 @@ Site Wide Only: true
 
 function bp_tinymce_add_js() {
 	global $bp;
+	//print_r($bp);
 	
-	if ( $bp->current_action == 'forum' || $bp->current_action == 'home' || $bp->current_component == 'wire' || $bp->current_component == $bp->profile->slug || $bp->current_action == 'compose' ) {
+	if ( $bp->current_component == 'activity' || $bp->current_action == 'forum' || $bp->current_action == 'home' || $bp->current_component == 'wire' || $bp->current_component == $bp->profile->slug || $bp->current_action == 'compose' ) {
 	
 		echo '<script language="javascript" type="text/javascript" src="',$bp->root_domain,'/',WPINC,'/js/tinymce/tiny_mce.js"></script>';
     	echo '<script language="javascript" type="text/javascript">';
@@ -23,7 +24,7 @@ function bp_tinymce_add_js() {
 
 	}
 
-	if ( $bp->current_action == 'home' ) {
+	if ( $bp->current_action == 'home' || $bp->current_component == 'activity' ) {
 		wp_register_script('bp-tinymce-js', WP_PLUGIN_URL . '/bp-tinymce/bp-tinymce-js.js');
 		wp_enqueue_script( 'bp-tinymce-js' );
 	}
