@@ -24,3 +24,6 @@ This plugin enables rich text editing for BuddyPress users. It uses the TinyMCE 
 
 = 0.1 =
 * Initial release
+
+= 0.2 =
+* Compatibility with "what's new" box on group home pages in BP 1.2

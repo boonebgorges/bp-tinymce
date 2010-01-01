@@ -3,7 +3,7 @@
 Plugin Name: BP-TinyMCE
 Plugin URI: http://teleogistic.net
 Description: Puts TinyMCE on BP pages
-Version: 0.1
+Version: 0.2
 Requires at least: BP 1.1
 Author: Boone Gorges
 Author URI: http://teleogistic.net
@@ -11,17 +11,21 @@ Site Wide Only: true
 */
 
 
-
-
 function bp_tinymce_add_js() {
 	global $bp;
 	
 	if ( $bp->current_action == 'forum' || $bp->current_action == 'home' || $bp->current_component == 'wire' || $bp->current_component == $bp->profile->slug || $bp->current_action == 'compose' ) {
+	
 		echo '<script language="javascript" type="text/javascript" src="',$bp->root_domain,'/',WPINC,'/js/tinymce/tiny_mce.js"></script>';
     	echo '<script language="javascript" type="text/javascript">';
-    	echo 'tinyMCE.init({mode : "textareas", language : "en", theme : "advanced", theme_advanced_buttons1 : "bold,italic,bullist,numlist,blockquote,link,unlink", theme_advanced_buttons2 : "", theme_advanced_buttons3 : "", language : "en",theme_advanced_toolbar_location : "top", theme_advanced_toolbar_align : "left"});';
+    	echo 'tinyMCE.init({mode : "specific_textareas", editor_deselector: "ac-input", language : "en", theme : "advanced", theme_advanced_buttons1 : "bold,italic,bullist,numlist,blockquote,link,unlink", theme_advanced_buttons2 : "", theme_advanced_buttons3 : "", language : "en",theme_advanced_toolbar_location : "top", theme_advanced_toolbar_align : "left"});';
     	echo '</script>';
 
+	}
+
+	if ( $bp->current_action == 'home' ) {
+		wp_register_script('bp-tinymce-js', WP_PLUGIN_URL . '/bp-tinymce/bp-tinymce-js.js');
+		wp_enqueue_script( 'bp-tinymce-js' );
 	}
 
 }
@@ -74,6 +78,10 @@ function bp_tinymce_allowed_tags($c) {
 						'&lt;/li&gt;',
 						'&lt;blockquote&gt;',
 						'&lt;/blockquote&gt;',
+						'<b>',
+						'</b>',
+						'<i>',
+						'</i>',
 					);
 	$replace = array(	'<p>',
 						'</p>',
@@ -96,6 +104,10 @@ function bp_tinymce_allowed_tags($c) {
 						'</li>',
 						'<blockquote>',
 						'</blockquote>',
+						'<strong>',
+						'</strong>',
+						'<em>',
+						'</em>',
 					);
 	
 	$c = preg_replace( "/&lt;a (title.*?)?href=&quot;http:([a-zA-Z_.\/-]+?)&quot;( target.*?)?&gt;/", '<a $1 href="http://$2"> $3', $c );
