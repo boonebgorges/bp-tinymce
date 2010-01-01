@@ -40,6 +40,8 @@ function bp_tinymce_allowed_tags($c) {
       	$allowedtags['pre'] = array();
       	$allowedtags['a'] = array(
         	'href' => array(),
+        	'title' => array(),
+        	'target' => array(),
        		);
       	$allowedtags['img'] = array(
         	'src' => array(),
@@ -95,7 +97,8 @@ function bp_tinymce_allowed_tags($c) {
 						'<blockquote>',
 						'</blockquote>',
 					);
-	$c = preg_replace( "/&lt;a (title.*?)?href=&quot;http:([a-zA-Z_.\/-]+?)&quot;( target.*?)?&gt;/", '<a href="http://$1">', $c );
+	
+	$c = preg_replace( "/&lt;a (title.*?)?href=&quot;http:([a-zA-Z_.\/-]+?)&quot;( target.*?)?&gt;/", '<a $1 href="http://$2"> $3', $c );
 	$c = preg_replace( '/&lt;span style=&quot;text-decoration: underline;?&quot;&gt;(.*?)&lt;\/span&gt;/', '<span style="text-decoration: underline">$1</span>', $c );
 	
 	$c = str_replace( $search, $replace, $c );
