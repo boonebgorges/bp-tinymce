@@ -3,7 +3,7 @@
 Plugin Name: BP-TinyMCE
 Plugin URI: http://teleogistic.net
 Description: Puts TinyMCE on BP pages
-Version: 0.2
+Version: 0.2.1
 Requires at least: BP 1.1
 Author: Boone Gorges
 Author URI: http://teleogistic.net
