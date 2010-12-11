@@ -1,5 +1,11 @@
 <?php
 
+// Massive hack. Loads my JS before BP's so that my click event is registered first.
+// Talk to BP team about the craptastic way BP uses wp_enqueue_script()
+wp_enqueue_script( 'jquery' );
+wp_register_script('bp-tinymce-js', WP_PLUGIN_URL . '/bp-tinymce/bp-tinymce-js.js');
+wp_enqueue_script( 'bp-tinymce-js' );
+
 if ( !class_exists( 'BP_TinyMCE' ) ) :
 
 class BP_TinyMCE {
@@ -10,7 +16,7 @@ class BP_TinyMCE {
 	
 	function __construct() {
 		add_action( 'wp_head', array( $this, 'add_js' ), 1 );
-		add_action( 'init', array( $this, 'enqueue_script' ) );
+		add_action( 'init', array( $this, 'enqueue_script' ), 1 );
 		
 		// Some components have filterable allowedtags lists. 
 		$tinymce_components = array(

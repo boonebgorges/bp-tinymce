@@ -3,7 +3,7 @@ Contributors: boonebgorges, cuny-academic-commons
 Tags: buddypress, tinymce, wysiwyg, rich text, editor
 Requires at least: WP 2.9, BuddyPress 1.2
 Tested up to: WP 3.0.2, BuddyPress 1.2.6
-Stable tag: 0.3
+Stable tag: 0.3.1
 
 Replaces textareas throughout BuddyPress with the TinyMCE rich text box.
 
@@ -20,6 +20,9 @@ This plugin enables rich text editing for BuddyPress users. It uses the TinyMCE 
 
 
 == Changelog ==
+
+= 0.3.1 =
+* An attempt at hacking around AJAX issues
 
 = 0.3 =
 * Lots of refactoring
