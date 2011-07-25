@@ -1,3 +1,35 @@
+/* Overriding some bp-default resets
+   ------------------------------------------*/
+
+ul.item-list .post-content ul li {
+	list-style-type: disc;
+}
+
+ul.item-list .post-content ol li {
+	list-style-type: decimal;
+}
+
+ul.item-list .post-content ul li,
+ul#topic-post-list .post-content ul li,
+ul.item-list .post-content ol li,
+ul#topic-post-list .post-content ol li
+{
+	border: 0;
+	padding: 3px 8px;
+	margin-left: 14px;
+}
+
+ul.item-list .post-content blockquote {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding: 8px 18px;
+	margin: 8px 18px;
+	background: #eee;
+}
+
+/* Editor styles
+   ------------------------------------------*/
+   
 .wp_themeSkin table.mceLayout {
 	border: 1px solid #555 !important;
 }
@@ -9,6 +41,9 @@
 .wp_themeSkin td.mceToolbar.mceLast {
 	border-bottom: 1px solid #555;
 }
+
+/* Distraction-free editor styles
+   ------------------------------------------*/
 
 /* Distraction Free Editor - Overlay Styles */
 .fullscreen-overlay {
@@ -35,7 +70,7 @@
 .fullscreen-active .fullscreen-fader {
     display: none;
 }
-
+   
 /* Distraction Free Editor - Overlay Body */
 #wp-fullscreen-body {
     width: 100%;

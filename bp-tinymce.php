@@ -22,6 +22,7 @@ class BP_TinyMCE {
 		);
 		
 		foreach( $tinymce_components as $component  ) {
+			add_filter( 'bp_forums_allowed_tags', array( $this, 'allowed_tags' ), 1 );
 			add_filter( "bp_$component_allowed_tags", array( $this, 'allowed_tags' ), 1 );
 		}
 	}
@@ -55,18 +56,12 @@ class BP_TinyMCE {
 			wp_register_script('bp-tinymce-js', WP_PLUGIN_URL . '/bp-tinymce/bp-tinymce-js.js', array( 'jquery' ) );
 			wp_enqueue_script( 'bp-tinymce-js' );
 			
-			
-			
-			
+			// Enqueue the styles
 			wp_enqueue_style( 'bp-tinymce-css', WP_PLUGIN_URL . '/bp-tinymce/bp-tinymce-css.css' );
 		}
 	}
 	
 	function tinymce_init_params( $initArray ) {
-		//var_dump( 'bp_tinymce_tmce_settings', 'tinyMCE.init({mode : "specific_textareas", editor_deselector: "ac-input", language : "wp-langs-en", theme : "advanced", theme_advanced_buttons1 : "bold,italic,bullist,numlist,blockquote,link,unlink", theme_advanced_buttons2 : "", theme_advanced_buttons3 : "", language : "en",theme_advanced_toolbar_location : "top", theme_advanced_toolbar_align : "left"});' );
-			
-		//var_dump( $initArray );
-
 		$plugins 	= explode( ',', $initArray['plugins'] );		
 
 		// Remove internal linking
@@ -75,6 +70,7 @@ class BP_TinyMCE {
 			unset( $plugins[$wplink_key] );
 		}
 		
+		// Important. Allows arbitrary textareas to be selected
 		unset( $initArray['editor_selector'] );
 		
 		$plugins = array_values( $plugins );	
@@ -86,7 +82,8 @@ class BP_TinyMCE {
 
 	
 	function enable_tinymce_on_page() {
-			return true;
+		// todo
+		return true;
 	}
 	
 	function allowed_tags( $allowedtags ) {
