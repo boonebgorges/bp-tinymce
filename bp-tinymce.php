@@ -101,16 +101,16 @@ class BP_TinyMCE {
 		$allowedtags['code'] = array();
 		$allowedtags['pre'] = array();
 		$allowedtags['a'] = array(
-		'href' => array(),
-		'title' => array(),
-		'target' => array(),
+			'href' => array(),
+			'title' => array(),
+			'target' => array(),
 		);
 		$allowedtags['img'] = array(
-		'src' => array(),
+			'src' => array(),
 		);
 		$allowedtags['b'] = array();
 		$allowedtags['span'] = array(
-		'style' => array(),
+			'style' => array(),
 		);
 		$allowedtags['p'] = array();
 		$allowedtags['br'] = array();
