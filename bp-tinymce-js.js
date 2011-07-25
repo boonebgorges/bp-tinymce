@@ -1,15 +1,15 @@
 jQuery(document).ready( function() {
 	var j = jQuery;
 	
+	/* Activity update AJAX posting */
 	j("input#aw-whats-new-submit").click( function() {
-		var content = j('#whats-new_ifr').contents().find('#tinymce').html();
-		j("textarea#whats-new").val(content);
+		tinyMCE.triggerSave();
 		j('#whats-new_ifr').contents().find('#tinymce').html('');
 	});
 	
+	/* Message reply AJAX posting */
 	j("input#send_reply_button").click( function() {
-		var content = j('#message_content_ifr').contents().find('#tinymce').html();
-		j("textarea#message_content").val(content);
+		tinyMCE.triggerSave();
 		j('#whats-new_ifr').contents().find('#tinymce').html('');
 	});
 });

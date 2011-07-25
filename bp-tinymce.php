@@ -30,10 +30,10 @@ class BP_TinyMCE {
 	function add_js() {
 		global $bp;
 		
-		$baseurl = includes_url('js/tinymce');
+		$baseurl = includes_url( 'js/tinymce' );
 		
 		if ( $this->enable_tinymce_on_page() ) {
-			wp_tiny_mce();
+			wp_tiny_mce( true, array( 'mode' => 'textareas' ) );
 		}
 	
 	}
@@ -42,19 +42,22 @@ class BP_TinyMCE {
 		global $bp;
 		
 		if ( $this->enable_tinymce_on_page() ) {
-			add_action( 'tiny_mce_before_init', array( $this, 'tinymce_init_params' ) );
+			add_filter( 'teeny_mce_before_init', array( $this, 'tinymce_init_params' ) );
 		
 			require_once( ABSPATH . '/wp-admin/includes/post.php' );
-			//wp_enqueue_script( 'common' );
-			//wp_enqueue_script( 'jquery-color' );
+			
 			wp_enqueue_script( 'editor' );
-			//if ( function_exists( 'add_thickbox' ) ) 
-				//add_thickbox();
-			//wp_enqueue_script( 'utils' );
-			//wp_enqueue_script( 'autosave' );
+			
+			// We have to deregister the DTheme ajax and reregister it to be dependent
+			// on our own, so that our click events are registered before bp-default's
+			wp_deregister_script( 'dtheme-ajax-js' );
 		
+			// Register our custom JS
 			wp_register_script('bp-tinymce-js', WP_PLUGIN_URL . '/bp-tinymce/bp-tinymce-js.js', array( 'jquery' ) );
 			wp_enqueue_script( 'bp-tinymce-js' );
+			
+			// Reload bp-default ajax
+			wp_enqueue_script( 'dtheme-ajax-js', get_template_directory_uri() . '/_inc/global.js', array( 'jquery', 'bp-tinymce-js' ) );
 			
 			// Enqueue the styles
 			wp_enqueue_style( 'bp-tinymce-css', WP_PLUGIN_URL . '/bp-tinymce/bp-tinymce-css.css' );
@@ -62,7 +65,7 @@ class BP_TinyMCE {
 	}
 	
 	function tinymce_init_params( $initArray ) {
-		$plugins 	= explode( ',', $initArray['plugins'] );		
+		$plugins = explode( ',', $initArray['plugins'] );		
 
 		// Remove internal linking
 		$wplink_key = array_search( 'wplink', $plugins );
