@@ -13,13 +13,16 @@ This plugin enables rich text editing for BuddyPress users. It uses the TinyMCE 
 
 == Installation ==
 
-* Upload the directory '/bp-tinymce/' to your WP plugins directory and activate from the Dashboard of the main blog.
-* If you're not seeing the TinyMCE box in BuddyPress, check to make sure that the path to TinyMCE on line 20 of bp-tinymce.php is correct.
+* Install and activate. Rich editing will be enabled on all BP sections of your site.
 
 *** IMPORTANT: This plugin allows certain pieces of HTML to be put into BuddyPress, including hrefs. Make sure that you are satisfied with the security of the plugin before activiating it on a production site! ***
 
 
 == Changelog ==
+
+= 0.4 =
+* Updated to use WP's built-in TinyMCE
+* Improved AJAX performance
 
 = 0.3.1 =
 * An attempt at hacking around AJAX issues

@@ -1,22 +1,31 @@
 /* Overriding some bp-default resets
    ------------------------------------------*/
 
-ul.item-list .post-content ul li {
+ul.activity-list ol {
+	list-style: decimal;
+}
+
+ul.item-list .post-content ul li,
+.activity-inner ul li {
 	list-style-type: disc;
 }
 
-ul.item-list .post-content ol li {
+ul.item-list .post-content ol li,,
+.activity-inner ol li {
 	list-style-type: decimal;
 }
 
 ul.item-list .post-content ul li,
 ul#topic-post-list .post-content ul li,
 ul.item-list .post-content ol li,
-ul#topic-post-list .post-content ol li
+ul#topic-post-list .post-content ol li,
+ul.activity-list ul li,
+ul.activity-list ol li
 {
 	border: 0;
-	padding: 3px 8px;
-	margin-left: 14px;
+	padding: 3px 6px;
+	margin-left: 32px;
+	overflow: visible;
 }
 
 ul.item-list .post-content blockquote {

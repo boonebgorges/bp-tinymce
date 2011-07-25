@@ -18,12 +18,15 @@ class BP_TinyMCE {
 		// Some components have filterable allowedtags lists. 
 		$tinymce_components = array(
 			'forums',
-			'activity' 
+			'activity',
+			'groups'
 		);
 		
 		foreach( $tinymce_components as $component  ) {
 			add_filter( 'bp_forums_allowed_tags', array( $this, 'allowed_tags' ), 1 );
+			add_filter( 'bp_activity_allowed_tags', array( $this, 'allowed_tags' ), 1 );
 			add_filter( "bp_$component_allowed_tags", array( $this, 'allowed_tags' ), 1 );
+			add_filter( "bp_$component_filter_kses", array( $this, 'allowed_tags' ), 1 );
 		}
 	}
 
@@ -112,7 +115,9 @@ class BP_TinyMCE {
 		$allowedtags['span'] = array(
 			'style' => array(),
 		);
-		$allowedtags['p'] = array();
+		$allowedtags['p'] = array(
+			'style' => array()
+		);
 		$allowedtags['br'] = array();
 		
 		return apply_filters( 'bp_tinymce_allowedtags', $allowedtags );
