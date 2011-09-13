@@ -23,6 +23,7 @@ This plugin enables rich text editing for BuddyPress users. It uses the TinyMCE 
 = 0.4.1 =
 * Added filters
 * Abstracted out is_teeny setting for filtering
+* Improved support for BP 1.5 bp-default activity posting buttons
 
 = 0.4 =
 * Updated to use WP's built-in TinyMCE
