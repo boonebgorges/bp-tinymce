@@ -30,8 +30,8 @@ class BP_TinyMCE {
 		foreach( $tinymce_components as $component  ) {
 			add_filter( 'bp_forums_allowed_tags', array( $this, 'allowed_tags' ), 1 );
 			add_filter( 'bp_activity_allowed_tags', array( $this, 'allowed_tags' ), 1 );
-			add_filter( "bp_$component_allowed_tags", array( $this, 'allowed_tags' ), 1 );
-			add_filter( "bp_$component_filter_kses", array( $this, 'allowed_tags' ), 1 );
+			add_filter( 'bp_' . $component . "_allowed_tags", array( $this, 'allowed_tags' ), 1 );
+			add_filter( "bp_" . $component . "_filter_kses", array( $this, 'allowed_tags' ), 1 );
 		}
 	}
 
