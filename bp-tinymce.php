@@ -94,7 +94,7 @@ class BP_TinyMCE {
 
 	function enable_tinymce_on_page() {
 		// todo
-		return true;
+		return apply_filters( 'bp_tinymce_enable_on_page', true );
 	}
 
 	function allowed_tags( $allowedtags ) {
