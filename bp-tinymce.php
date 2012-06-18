@@ -1,8 +1,5 @@
 <?php
 
-// Massive hack. Loads my JS before BP's so that my click event is registered first.
-// Talk to BP team about the craptastic way BP uses wp_enqueue_script()
-
 if ( !class_exists( 'BP_TinyMCE' ) ) :
 
 class BP_TinyMCE {
@@ -27,7 +24,7 @@ class BP_TinyMCE {
 
 		$this->enabled_components = apply_filters( 'bp_tinymce_enabled_components', array(
 			'forums',
-			'activity',
+			//'activity',
 			'xprofile',
 			'groups',
 			'messages'
@@ -140,6 +137,11 @@ class BP_TinyMCE {
 					}
 				}
 			}
+		}
+
+		// "What's new" activity update
+		if ( bp_is_activity_component() && in_array( 'activity', $this->enabled_components ) ) {
+			$this->textarea_id = 'whats-new';
 		}
 
 		// todo
