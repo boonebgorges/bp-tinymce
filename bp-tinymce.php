@@ -113,6 +113,11 @@ class BP_TinyMCE {
 			$this->textarea_id = 'group-desc';
 		}
 
+		// Group creation
+		if ( bp_is_group_creation_step( 'group-details' ) && in_array( 'groups', $this->enabled_components ) ) {
+			$this->textarea_id = 'group-desc';
+		}
+
 		// Messages
 		if ( bp_is_messages_component() && in_array( 'messages', $this->enabled_components ) ) {
 			$this->textarea_id = 'message_content';
