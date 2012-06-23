@@ -24,7 +24,7 @@ class BP_TinyMCE {
 
 		$this->enabled_components = apply_filters( 'bp_tinymce_enabled_components', array(
 			'forums',
-			//'activity',
+			'activity',
 			'xprofile',
 			'groups',
 			'messages'
@@ -94,6 +94,16 @@ class BP_TinyMCE {
 			// Enqueue the styles
 			wp_enqueue_style( 'bp-tinymce-css', WP_PLUGIN_URL . '/bp-tinymce/bp-tinymce-css.css' );
 		}
+
+		// Activity is handled separatel
+		if ( in_array( 'activity', $this->enabled_components ) ) {
+			if ( bp_is_activity_component() ) {
+
+				wp_enqueue_script( 'bp-tinymce-tmce', WP_PLUGIN_URL . '/bp-tinymce/tiny_mce/tiny_mce.js' );
+
+				wp_enqueue_script( 'bp-tinymce-js-activity', WP_PLUGIN_URL . '/bp-tinymce/bp-tinymce-activity.js', array( 'jquery', 'bp-tinymce-tmce' ) );
+			}
+		}
 	}
 
 	function enable_tinymce_on_page() {
@@ -110,6 +120,10 @@ class BP_TinyMCE {
 
 		// Group edit-details (description)
 		if ( bp_is_group_admin_page() && bp_is_action_variable( 'edit-details', 0 ) && in_array( 'groups', $this->enabled_components ) ) {
+			$this->textarea_id = 'group-desc';
+		}
+
+		if ( bp_is_group_creation_step( 'group-details' ) && in_array( 'groups', $this->enabled_components ) ) {
 			$this->textarea_id = 'group-desc';
 		}
 
@@ -137,11 +151,6 @@ class BP_TinyMCE {
 					}
 				}
 			}
-		}
-
-		// "What's new" activity update
-		if ( bp_is_activity_component() && in_array( 'activity', $this->enabled_components ) ) {
-			$this->textarea_id = 'whats-new';
 		}
 
 		// todo

@@ -30,21 +30,6 @@ jQuery(document).ready( function($) {
 						$(send_button).unbind('click');
 					}
 				}
-
-				if ( the_true_id == 'whats-new' ) {
-					$("#whats-new-options").animate({
-						height:'40px'
-					});
-					$("form#whats-new-form textarea").animate({
-						height:'50px'
-					});
-					$("#aw-whats-new-submit").prop("disabled", false);
-
-					$("input#aw-whats-new-submit").bind( 'mouseenter', function() {
-						tinyMCE.triggerSave();
-						$('#whats-new_ifr').contents().find('#tinymce').html('');
-					});
-				}
 			}
 		});
 	});
