@@ -3,8 +3,8 @@
 Plugin Name: BP-TinyMCE
 Plugin URI: http://teleogistic.net
 Description: Puts TinyMCE on BP pages
-Version: 0.4.1
-Requires at least: BP 1.1
+Version: 0.5-bleeding
+Requires at least: BP 1.5
 Author: Boone Gorges
 Author URI: http://teleogistic.net
 Network: true
