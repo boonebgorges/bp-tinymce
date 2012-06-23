@@ -73,7 +73,7 @@ jQuery(document).ready( function($) {
 
 		if ( $(e.target).hasClass('acomment-reply') ) {
 			timeoutHandler = setTimeout( function() {
-				var aparent = $(e.target).closest("li.activity");
+				var aparent = $(e.target).closest("ul#activity-stream > li");
 				var tarea = $(aparent).find('textarea.ac-input');
 
 				tinyMCE.settings = configArray[1];

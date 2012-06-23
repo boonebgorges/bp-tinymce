@@ -97,7 +97,7 @@ class BP_TinyMCE {
 
 		// Activity is handled separatel
 		if ( in_array( 'activity', $this->enabled_components ) ) {
-			if ( bp_is_activity_component() ) {
+			if ( bp_is_activity_component() || ( bp_is_group() && bp_is_current_action( 'home' ) ) ) {
 
 				wp_enqueue_script( 'bp-tinymce-tmce', WP_PLUGIN_URL . '/bp-tinymce/tiny_mce/tiny_mce.js' );
 
